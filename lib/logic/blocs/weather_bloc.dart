@@ -15,8 +15,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       emit(WeatherFetchState());
 
       try {
-        //final weather = await weatherRepository.getWeatherForLocation(lat: event.lat,lng: event.lng, date: event.date);
-      //  emit(WeatherFetchCompleted(weather));
+        final weather = await weatherRepository.getWeatherForLocation(lat: 37.43296265331129,lng: -122.08832357078792,);
+        emit(WeatherFetchCompleted(weather));
       } catch (error) {
         emit(OnErrorState("Could not fetch weather data"));
       }

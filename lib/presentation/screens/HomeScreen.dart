@@ -1,7 +1,11 @@
 
+import 'dart:async';
+
 import 'package:blocweatherapp/logic/blocs/weather_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +16,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Position? _currentPosition;
+  late StreamSubscription<Position> _positionStream;
+
+
+  @override
+  void dispose() {
+    _positionStream.cancel();
+    super.dispose();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     print("Home screen");
@@ -23,6 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
+          ElevatedButton(onPressed: (){
+            context.read<WeatherBloc>().add(FetchWeatherEvent(lat: 37.43296265331129,lng: -122.08832357078792,date: 12829292929));
+          }, child: const Text('Trigger BlocEvent')),
+
 
        const Text("Today's weather is", style: TextStyle(color: Colors.black),),
           const SizedBox(height: 30,),
@@ -49,3 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ),);
   }
 }
+
+
+

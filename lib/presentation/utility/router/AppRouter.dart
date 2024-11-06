@@ -14,8 +14,7 @@ class AppRouter {
         );
       case '/home':
         return MaterialPageRoute(
-          builder: (_) =>
-              HomeScreen(),
+          builder: (_) => HomeScreen(),
         );
       // case '/third':
       //   return MaterialPageRoute(

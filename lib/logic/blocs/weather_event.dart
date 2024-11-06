@@ -10,7 +10,7 @@ final class FetchWeatherEvent extends WeatherEvent {
   final double lng;
   final double date;
 
-  FetchWeatherEvent(this.lat, this.lng, this.date);
+  FetchWeatherEvent({required this.lat,required this.lng,required this.date});
 }
 
 final class OnFetchErrorEvent extends WeatherEvent {}
